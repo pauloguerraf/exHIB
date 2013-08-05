@@ -1,3 +1,23 @@
+//ARDUINO CODE
+/*int potentiometerPin = A0;  
+int sensorValue = 0;
+int lastSensorValue = 0;
+long sum = 0;
+long count = 0;
+
+void setup(){
+  Serial.begin(115200);
+  sensorValue = analogRead(potentiometerPin);
+  lastSensorValue = sensorValue;
+}
+
+void loop(){
+  delay(25);
+  sensorValue = analogRead(potentiometerPin); 
+  Serial.print(sensorValue);
+  Serial.println();  
+}*/
+
 import pgf.exHIB.contentobject.*;
 import pgf.exHIB.verticalmenu.*;
 import pgf.exHIB.horizontalmenu.*;
