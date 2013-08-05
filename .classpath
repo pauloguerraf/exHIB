@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/paulinhog84/Documents/workspaceEclipse/UICInnovationCenter/exHIB/libs/Ani.jar"/>
+	<classpathentry kind="lib" path="/Users/paulinhog84/Documents/workspaceEclipse/UICInnovationCenter/exHIB/libs/core.jar"/>
+	<classpathentry kind="lib" path="/Users/paulinhog84/Documents/workspaceEclipse/UICInnovationCenter/exHIB/libs/gluegen-rt-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="/Users/paulinhog84/Documents/workspaceEclipse/UICInnovationCenter/exHIB/libs/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="/Users/paulinhog84/Documents/workspaceEclipse/UICInnovationCenter/exHIB/libs/jogl-all-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="/Users/paulinhog84/Documents/workspaceEclipse/UICInnovationCenter/exHIB/libs/jogl-all.jar"/>
+	<classpathentry kind="lib" path="/Users/paulinhog84/Documents/workspaceEclipse/UICInnovationCenter/exHIB/libs/video.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
