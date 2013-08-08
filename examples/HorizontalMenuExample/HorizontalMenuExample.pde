@@ -19,9 +19,7 @@ void loop(){
 }*/
 
 import pgf.exHIB.contentobject.*;
-import pgf.exHIB.verticalmenu.*;
-import pgf.exHIB.horizontalmenu.*;
-import pgf.exHIB.circularmenu.*;
+import pgf.exHIB.menu.*;
 import vialab.SMT.*;
 import processing.serial.*;
 import de.looksgood.ani.*;
@@ -46,8 +44,6 @@ void setup() {
   menu.setY(height/2);
   menu.setActiveScale(2);
   menu.setSpacing(20);
-  TouchClient.init(this, TouchSource.MOUSE);
-  TouchClient.setFastPicking(true);
 }
 
 void draw() {
@@ -57,13 +53,12 @@ void draw() {
 }
 
 void checkActive() {
-  if (usingSerial) {d
+  if (usingSerial) {
     activeNum = constrain((int)map(currentPosX, 0, 1024, 0, menu.getSize()), 0, menu.getSize());
   }
   else if (!usingSerial) {
     activeNum = constrain((int)map(mouseX, width/2-200, width/2+200, 0, menu.getSize()), 0, menu.getSize());
   }
-  println(activeNum);
   menu.setCurrentIndex(activeNum);
 }
 

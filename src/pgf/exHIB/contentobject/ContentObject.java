@@ -13,7 +13,7 @@ public class ContentObject {
 	boolean active;
 	int spacing; 
 	boolean isPlaying;
-	float aniDelay = 1f;
+	float aniDelay = 1.5f;
 	String type;
 
 	Movie video; 
@@ -45,15 +45,33 @@ public class ContentObject {
 		video = new Movie(parent, videoURL_);
 		type = "video";
 	}
+	
+	public void setX(int x_)
+	{
+		this.x = x_;
+	}
+	
+	public void setY(int y_)
+	{
+		this.y = y_;
+	}
+
+	public void setActive(boolean val) {
+		this.active = val;
+	}
 
 	public void setPosition(int x_, int y_) {
-		Ani.to(this, aniDelay, "x", x_);
-		Ani.to(this, aniDelay, "y", y_);
+//		Ani.to(this, aniDelay, "x", x_);
+//		Ani.to(this, aniDelay, "y", y_);
+		x = x_;
+		y = y_;
 	}
 
 	public void setSize(int w_, int h_) {
-		Ani.to(this, 1.5f, "w", w_);
-		Ani.to(this, 1.5f, "h", h_);
+//		Ani.to(this, 0.5f, "w", w_);
+//		Ani.to(this, 0.5f, "h", h_);
+		w = w_;
+		h = h_;
 	}
 	
 	public void setWidth(int w_) {
@@ -91,20 +109,7 @@ public class ContentObject {
 	public int getHeight() {
 		return h;
 	}
-	
-	public void setX(int x_)
-	{
-		this.x = x_;
-	}
-	
-	public void setY(int y_)
-	{
-		this.y = y_;
-	}
 
-	public void setActive(boolean val) {
-		this.active = val;
-	}
 
 	public void display() {
 		parent.pushMatrix();
