@@ -4,16 +4,21 @@ import processing.core.*;
 import processing.video.*;
 import de.looksgood.ani.Ani;
 
+
 public class ContentObject {
 	int w;
 	int h;
+	int endW;
+	int endH;
 	int x;
 	int y;
+	int endX;
+	int endY;
 	float tR;
 	boolean active;
 	int spacing; 
 	boolean isPlaying;
-	float aniDelay = 1.5f;
+	float aniDelay = 3.0f;
 	String type;
 
 	Movie video; 
@@ -29,8 +34,12 @@ public class ContentObject {
 		parent = parent_;
 		x = x_;
 		y = y_;
+		endX = x_;
+		endY = y_;
 		w = w_;
 		h = h_;
+		endW = w_;
+		endH = h_;
 		tR = 0;
 		type = "default";
 		isPlaying = false;
@@ -46,14 +55,21 @@ public class ContentObject {
 		type = "video";
 	}
 	
+	public void setAniDelay(float delay_)
+	{
+		this.aniDelay = delay_;
+	}
+	
 	public void setX(int x_)
 	{
-		this.x = x_;
+		endX = x_;
+		Ani.to(this, aniDelay, "x", endX);
 	}
 	
 	public void setY(int y_)
 	{
-		this.y = y_;
+		endY = y_;
+		Ani.to(this, aniDelay, "y", endY);
 	}
 
 	public void setActive(boolean val) {
@@ -61,25 +77,27 @@ public class ContentObject {
 	}
 
 	public void setPosition(int x_, int y_) {
-//		Ani.to(this, aniDelay, "x", x_);
-//		Ani.to(this, aniDelay, "y", y_);
-		x = x_;
-		y = y_;
+		endX = x_;
+		endY = y_;
+		Ani.to(this, aniDelay, "x", endX);
+		Ani.to(this, aniDelay, "y", endY);
 	}
 
 	public void setSize(int w_, int h_) {
-//		Ani.to(this, 0.5f, "w", w_);
-//		Ani.to(this, 0.5f, "h", h_);
-		w = w_;
-		h = h_;
+		endW = w_;
+		endH = h_;
+		Ani.to(this, aniDelay, "w", endW);
+		Ani.to(this, aniDelay, "h", endH);
 	}
-	
+
 	public void setWidth(int w_) {
-		w = w_;
+		endW = w_;
+		Ani.to(this, aniDelay, "w", endW);
 	}
 	
 	public void setHeight(int h_) {
-		h = h_;
+		endH = h_;
+		Ani.to(this, aniDelay, "h", endH);
 	}
 
 	public void setSpacing(int spacing_) {
@@ -95,19 +113,19 @@ public class ContentObject {
 	}
 	
 	public int getX() {
-		return x;
+		return endX;
 	}
 	
 	public int getY() {
-		return y;
+		return endY;
 	}
 	
 	public int getWidth() {
-		return w;
+		return endW;
 	}
 	
 	public int getHeight() {
-		return h;
+		return endH;
 	}
 
 

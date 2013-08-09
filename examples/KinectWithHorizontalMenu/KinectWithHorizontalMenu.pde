@@ -5,16 +5,11 @@ import processing.serial.*;
 import de.looksgood.ani.*;
 import processing.video.*;
 
-////////////////////////////////////////////
-// setup variables /////////////////////////
-////////////////////////////////////////////
-boolean usingSerial = false;
-////////////////////////////////////////////
 HorizontalMenu menu;
 int yPos, currentPosX, lastX, lastY, currentLengthGestureX;
+Serial sPort;
 boolean checked = false;
 int activeNum = 0;
-
 
 void setup() {
   size(1020, 768, P3D);
@@ -63,20 +58,28 @@ void checkPress(int x_, int y_) {
   }
 }
 
+
 void checkActive() {
   if (!checked) {
     if (currentLengthGestureX < -40) {
-      activeNum++;
-      menu.setCurrentIndex(activeNum);
+      menu.next();
       currentLengthGestureX = 0;
       checked = true;
     }
     else if (currentLengthGestureX > 40) {
-      activeNum--;
-      menu.setCurrentIndex(activeNum);
+      menu.prev();
       currentLengthGestureX = 0;
       checked = true;
     }
+  }
+}
+
+void keyPressed() {
+  if (keyCode == UP) {
+    menu.next();
+  }
+  else if (keyCode == DOWN) {
+    menu.prev();
   }
 }
 

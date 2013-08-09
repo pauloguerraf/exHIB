@@ -2,7 +2,6 @@ package pgf.exHIB.menu;
 
 import processing.core.*;
 import pgf.exHIB.contentobject.*;
-
 import java.util.*;
 
 import de.looksgood.ani.Ani;
@@ -42,7 +41,7 @@ public class HorizontalMenu {
 		}
 		positionItems();
 	}
-	
+
 	public void addContentItem(ContentObject a_){
 		this.navArray.add(a_);
 		this.numOfItems = navArray.size();
@@ -94,9 +93,9 @@ public class HorizontalMenu {
 		if (currentIndex < navArray.size()-1) {
 			this.currentIndex++;
 		}
-//		else {
-//			this.currentIndex = 0;
-//		}
+		//		else {
+		//			this.currentIndex = 0;
+		//		}
 		positionItems();
 	}
 
@@ -105,17 +104,24 @@ public class HorizontalMenu {
 		if (currentIndex > 0) {
 			currentIndex--;
 		}
-//		else {
-//			currentIndex=navArray.size()-1;
-//		}
+		//		else {
+		//			currentIndex=navArray.size()-1;
+		//		}
 		positionItems();
 	}
 
 	private void positionItems()
 	{
-		int xPos = this.navArray.get(0).getWidth()/2;
+		int xPos;
+		if(currentIndex == 0){
+			xPos = (int)(this.normW*this.activeScale/2);
+		}
+		else{
+			xPos = (int)(this.normW/2);
+		}
 		int activeX = 0;
 		int difX;
+
 
 		for (int i=0; i < this.navArray.size(); i++) {
 			ContentObject a  = this.navArray.get(i);
@@ -129,20 +135,25 @@ public class HorizontalMenu {
 				a.setSize((int)(this.normW*this.activeScale), (int)(this.normH*this.activeScale));
 			}
 			else {
-				a.setSize(normW, normH);
+				a.setSize(this.normW, this.normH);
 			}
 			if (i>0) {
 				xPos += (int)(this.navArray.get(i-1).getWidth())/2;
 			}
-			xPos += (int)(a.getWidth()/2) + 2*this.spacing;
+			if(i == currentIndex){
+				xPos += (int)(this.normW*this.activeScale/2) + 2*this.spacing;
+			}
+			else{
+				xPos += (int)(this.normW/2) + 2*this.spacing;
+			}
 			a.setX(xPos);
 			if (a.isContentActive()) {
 				activeX = a.getX();
 			}
 		}
 
-		difX = activeX - this.parent.width/2;
 
+		difX = activeX - this.parent.width/2;
 		for (int i=0; i<navArray.size(); i++) {
 			ContentObject a  = navArray.get(i);
 			a.setX(a.getX()-difX);
@@ -180,7 +191,7 @@ public class HorizontalMenu {
 			}
 		}
 	}
-	
+
 	public void touch(int x_, int y_){
 		if (x_ > navArray.get(currentIndex).getX() - navArray.get(currentIndex).getWidth()/2 && x_ < navArray.get(currentIndex).getX() + navArray.get(currentIndex).getWidth()/2
 				&& y_ > navArray.get(currentIndex).getY() - navArray.get(currentIndex).getHeight()/2 && y_ < navArray.get(currentIndex).getY() + navArray.get(currentIndex).getHeight()/2){   
