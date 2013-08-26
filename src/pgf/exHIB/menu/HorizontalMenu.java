@@ -50,6 +50,11 @@ public class HorizontalMenu {
 	public void setY(int y_)
 	{
 		y = y_;
+		for (int i=0; i < this.numOfItems; i++)
+		{
+			this.navArray.get(i).setY(this.y);
+		}
+		positionItems();
 	}
 
 	public void setSpacing(int spacing_)
@@ -162,7 +167,6 @@ public class HorizontalMenu {
 
 	public void display() {
 		parent.pushMatrix();
-		parent.translate(0, y);
 		parent.rotate(-PApplet.radians(this.navArray.get(this.currentIndex).getRotation())); 
 		for (int i=0; i < this.navArray.size(); i++) 
 		{
@@ -192,12 +196,11 @@ public class HorizontalMenu {
 		}
 	}
 
-	public void touch(int x_, int y_){
-		if (x_ > navArray.get(currentIndex).getX() - navArray.get(currentIndex).getWidth()/2 && x_ < navArray.get(currentIndex).getX() + navArray.get(currentIndex).getWidth()/2
-				&& y_ > navArray.get(currentIndex).getY() - navArray.get(currentIndex).getHeight()/2 && y_ < navArray.get(currentIndex).getY() + navArray.get(currentIndex).getHeight()/2){   
-			for (int i=0; i < navArray.size(); i++) {
-				ContentObject a = navArray.get(i);
-				if (a.isContentActive() && a.getType().equals("video")) {
+	public void touch(int x_, int y_){ 
+		for (int i=0; i < navArray.size(); i++) {
+			ContentObject a = navArray.get(i);
+			if (a.isContentActive() && a.getType().equals("video")) {
+				if(a.isTouch(x_, y_)){
 					if (a.isVideoPlaying()) {
 						a.pauseVideo();
 					}
@@ -208,5 +211,5 @@ public class HorizontalMenu {
 			}
 		}
 	}
-
 }
+

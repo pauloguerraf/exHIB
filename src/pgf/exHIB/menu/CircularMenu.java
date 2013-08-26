@@ -51,22 +51,32 @@ public class CircularMenu {
 
 	public void setX(int x_)
 	{
+		int lastX = this.x;
+		int difX = lastX - x_;
 		this.x = x_;
+		for (int i=0; i < this.numOfItems; i++)
+		{
+			this.navArray.get(i).setX(navArray.get(i).getX()+difX);
+		}
 		positionItems();
 	}
 
 	public void setY(int y_)
 	{
 		this.y = y_;
+		for (int i=0; i < this.numOfItems; i++)
+		{
+			this.navArray.get(i).setY(this.y);
+		}
 		positionItems();
 	}
 
 	public void setCurrentIndex(int index_)
 	{
-		if ( index_ < 0 ) {
+		if ( index_ > 0 && index_ < this.navArray.size()) {
 			this.currentIndex = index_;
 		}
-		else if ( index_ > this.navArray.size()-1) {
+		else if ( index_ >= this.navArray.size()) {
 			this.currentIndex = this.navArray.size()-1;
 		}
 		positionItems();
@@ -102,7 +112,7 @@ public class CircularMenu {
 	public void display() {
 		parent.pushMatrix();
 		parent.translate(x, y);
-		parent.rotate(-PApplet.radians(this.navArray.get(this.currentIndex).getRotation())); 
+		parent.rotate(-PApplet.radians(this.navArray.get(this.currentIndex).getRotation())+PApplet.PI); 
 		for (int i=0; i < this.navArray.size(); i++) 
 		{
 			if (!this.navArray.get(i).isContentActive()) {
@@ -138,11 +148,11 @@ public class CircularMenu {
 			}
 			tX = this.innerRadius * PApplet.cos( angle );
 			tY = this.innerRadius * PApplet.sin( angle );
-			PApplet.println(tX + " " + tY);
+			//PApplet.println(tX + " " + tY);
 			tR = PApplet.degrees(angle-PApplet.PI/2);
 			item.setRotation(tR);
 			item.setPosition((int)tX, (int)tY);
-			item.setSize(300, 100);
+			item.setSize(400, 400);
 		}
 	}
 }

@@ -22,9 +22,7 @@ import processing.video.*;
 import de.looksgood.ani.*;
 import de.looksgood.ani.easing.*;
 import pgf.exHIB.contentobject.*;
-import pgf.exHIB.verticalmenu.*;
-import pgf.exHIB.horizontalmenu.*;
-import pgf.exHIB.circularmenu.*;
+import pgf.exHIB.menu.*;
 
 CircularMenu menu;
 

@@ -143,7 +143,7 @@ public class ContentObject {
 		parent.rect(0, 0, w, h);
 		if (video != null) {
 			parent.imageMode(PApplet.CENTER);
-			parent.image(video, x, y, w-10, h-10);
+			parent.image(video, 0, 0, w-10, h-10);
 		}
 		parent.popMatrix();
 	}
@@ -188,5 +188,11 @@ public class ContentObject {
 		return this.type;
 	}
 
-
+	public boolean isTouch(int x_, int y_) {		
+		if (x_ > this.x - this.getWidth()/2 && x_ < this.getX() + this.getWidth()/2
+				&& y_ >  this.y - this.getHeight()/2 && y_ < this.y + this.getHeight()/2){
+			return true;
+		}
+		return false;
+	}
 }
