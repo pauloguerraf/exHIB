@@ -23,6 +23,7 @@ public class ContentObject {
 
 	Movie video; 
 	PApplet parent;
+	PImage image;
 
 	public ContentObject(PApplet parent_) {
 		parent = parent_;
@@ -45,27 +46,54 @@ public class ContentObject {
 		isPlaying = false;
 	}
 
-	public ContentObject(PApplet parent_, int x_, int y_, int w_, int h_, String videoURL_) {
+	public ContentObject(PApplet parent_, int x_, int y_, int w_, int h_, String URL_) {
+		PApplet.println(URL_);
 		parent = parent_;
 		x = x_;
 		y = y_;
 		w = w_;
 		h = h_;
-		video = new Movie(parent, videoURL_);
-		type = "video";
+		String [] p =  URL_.split("\\.");
+		String extension = p[1];
+		if(isImage(extension)) {
+			image = new PImage(); 
+			image = parent.loadImage(URL_);
+			type = "image";
+		}
+		else if(isVideo(extension)) {
+			video = new Movie(parent, URL_);
+			type = "video";
+		}
 	}
-	
+
+
+	public boolean isImage(String ext){
+		if(ext.equals("jpg") || ext.equals("png")){
+			PApplet.println("Image");
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isVideo(String ext){
+		if(ext.equals("mov")){
+			PApplet.println("Video");
+			return true;
+		}
+		return false;
+	}
+
 	public void setAniDelay(float delay_)
 	{
 		this.aniDelay = delay_;
 	}
-	
+
 	public void setX(int x_)
 	{
 		endX = x_;
 		Ani.to(this, aniDelay, "x", endX);
 	}
-	
+
 	public void setY(int y_)
 	{
 		endY = y_;
@@ -94,7 +122,7 @@ public class ContentObject {
 		endW = w_;
 		Ani.to(this, aniDelay, "w", endW);
 	}
-	
+
 	public void setHeight(int h_) {
 		endH = h_;
 		Ani.to(this, aniDelay, "h", endH);
@@ -107,23 +135,23 @@ public class ContentObject {
 	public void setRotation(float tR_) {
 		tR = tR_;
 	}
-	
+
 	public float getRotation() {
 		return tR;
 	}
-	
+
 	public int getX() {
 		return endX;
 	}
-	
+
 	public int getY() {
 		return endY;
 	}
-	
+
 	public int getWidth() {
 		return endW;
 	}
-	
+
 	public int getHeight() {
 		return endH;
 	}
@@ -144,6 +172,10 @@ public class ContentObject {
 		if (video != null) {
 			parent.imageMode(PApplet.CENTER);
 			parent.image(video, 0, 0, w-10, h-10);
+		}
+		else if (image != null) {
+			parent.imageMode(PApplet.CENTER);
+			parent.image(image, 0, 0, w-10, h-10);
 		}
 		parent.popMatrix();
 	}
@@ -183,7 +215,7 @@ public class ContentObject {
 	public boolean isContentActive() {
 		return this.active;
 	}
-	
+
 	public String getType() {
 		return this.type;
 	}
