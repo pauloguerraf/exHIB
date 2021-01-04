@@ -7,7 +7,7 @@ The objective of exHIB was to group all the tools we developed during the interf
 
 The library provides inputs to manage traditional museum interfaces such as image/video galleries and timelines, thorugh not traditional inputs provided by sensors such as the Kinect, or Potentiometers and Conductive Ink connected to an Arduino.  
 
-<div style="text-align:center;">
+<div style="align:center;">
   
 ![Prototype IMG](https://historymoves.org/wp-content/uploads/2014/04/prototype-walk-through-4.jpg "Prototype IMG HIstory Moves")
 ![Prototype IMG](https://github.com/pauloguerraf/exHIB/blob/master/historymoves.jpg "Prototype IMG HIstory Moves")
